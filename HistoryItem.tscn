@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://fonts/press2p_regular_18.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fonts/press2p_regular_16.tres" type="DynamicFont" id=2]
+[ext_resource path="res://HistoryItem.gd" type="Script" id=3]
+
+[node name="HistoryItemMargin" type="MarginContainer"]
+margin_top = 42.0
+margin_right = 974.0
+margin_bottom = 42.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HistoryItem" type="VBoxContainer" parent="."]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 969.0
+margin_bottom = 59.0
+custom_constants/separation = 20
+
+[node name="InputHistory" type="Label" parent="HistoryItem"]
+margin_right = 964.0
+margin_bottom = 16.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.466667, 0.45098, 0.45098, 1 )
+text = " > User Input"
+
+[node name="Response" type="Label" parent="HistoryItem"]
+margin_top = 36.0
+margin_right = 964.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 1 )
+text = "Response from Game"

@@ -1,0 +1,109 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Input.gd" type="Script" id=1]
+[ext_resource path="res://Game.gd" type="Script" id=2]
+[ext_resource path="res://fonts/press2p_regular_18.tres" type="DynamicFont" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.0980392, 0.0941176, 0.0941176, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="StyleBoxFlat" id=3]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[node name="Game" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="GamePanel" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameMargin" type="MarginContainer" parent="GamePanel"]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="PanelRows" type="VBoxContainer" parent="GamePanel/GameMargin"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 580.0
+custom_constants/separation = 20
+
+[node name="ResponseArea" type="PanelContainer" parent="GamePanel/GameMargin/PanelRows"]
+margin_right = 984.0
+margin_bottom = 480.0
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 2 )
+
+[node name="HistoryScroll" type="ScrollContainer" parent="GamePanel/GameMargin/PanelRows/ResponseArea"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 979.0
+margin_bottom = 475.0
+scroll_horizontal_enabled = false
+
+[node name="History" type="VBoxContainer" parent="GamePanel/GameMargin/PanelRows/ResponseArea/HistoryScroll"]
+custom_constants/separation = 20
+
+[node name="InputArea" type="PanelContainer" parent="GamePanel/GameMargin/PanelRows"]
+margin_top = 500.0
+margin_right = 984.0
+margin_bottom = 560.0
+rect_min_size = Vector2( 0, 60 )
+custom_styles/panel = SubResource( 3 )
+
+[node name="InputContainer" type="HBoxContainer" parent="GamePanel/GameMargin/PanelRows/InputArea"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 979.0
+margin_bottom = 55.0
+
+[node name="Carret" type="Label" parent="GamePanel/GameMargin/PanelRows/InputArea/InputContainer"]
+margin_top = 16.0
+margin_right = 36.0
+margin_bottom = 34.0
+custom_fonts/font = ExtResource( 3 )
+text = " >"
+
+[node name="Input" type="LineEdit" parent="GamePanel/GameMargin/PanelRows/InputArea/InputContainer"]
+margin_left = 40.0
+margin_right = 974.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+custom_styles/focus = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = ExtResource( 3 )
+max_length = 40
+caret_blink = true
+script = ExtResource( 1 )
+
+[connection signal="text_entered" from="GamePanel/GameMargin/PanelRows/InputArea/InputContainer/Input" to="." method="_on_Input_text_entered"]
+[connection signal="text_entered" from="GamePanel/GameMargin/PanelRows/InputArea/InputContainer/Input" to="GamePanel/GameMargin/PanelRows/InputArea/InputContainer/Input" method="_on_Input_text_entered"]
